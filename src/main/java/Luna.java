@@ -62,8 +62,8 @@ public class Luna {
             } else if (input.startsWith("deadline ")) {
                 String[] parts = input.split(" ", 2); // split into 2 parts first
                 String completeDescription = parts.length > 1 ? parts[1] : "";
-                String description = completeDescription.split(" by ")[0];
-                String by = completeDescription.isEmpty() ? "" : completeDescription.split(" by ")[1];
+                String description = completeDescription.split(" /by ")[0];
+                String by = completeDescription.isEmpty() ? "" : completeDescription.split(" /by ")[1];
                 if (description.isEmpty()) {
                     try {
                         throw new LunaException.EmptyTaskDescriptionException("deadline for what???");
@@ -110,11 +110,29 @@ public class Luna {
                         continue; // skip to next loop iteration
                     }
                 }
+
                 Todo newTask = new Todo(description);
                 currList.add(newTask);
                 System.out.println(" okay! I've added this task:");
                 System.out.println("  " + newTask);
                 System.out.println(" Looks like you have " + currList.size() + " tasks in the list...");
+            } else if (input.startsWith("delete ")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                if (index >= 0 && index < currList.size()) {
+                    Task thisTask = currList.get(index);
+                    currList.remove(thisTask);
+                    System.out.println(" okay! I've removed this task:");
+                    System.out.println("  " + thisTask);
+                    System.out.println(" Looks like you have " + currList.size() + " tasks in the list...");
+                } else {
+                    //handling exception for when invalid index is given
+                    try {
+                        throw new LunaException.InvalidTaskNumberException("Give me a valid number please!!");
+                    } catch (LunaException.InvalidTaskNumberException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+
             } else {
                 try {
                     throw new LunaException.InvalidCommandException("Sorry I don't know what that means :(");
