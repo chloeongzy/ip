@@ -31,16 +31,16 @@ public class Parser {
                 return new DeleteCommand(Integer.parseInt(detail) - 1);
 
             case "todo":
-                return new AddCommand(new Todo(detail));
+                return new AddCommand(new Todo(detail, false));
 
             case "deadline":
                 String[] dParts = detail.split(" /by ");
-                return new AddCommand(new Deadline(dParts[0], dParts[1]));
+                return new AddCommand(new Deadline(dParts[0], false, dParts[1]));
 
             case "event":
                 String[] eParts = detail.split(" /from ");
                 String[] duration = eParts[1].split(" /to ");
-                return new AddCommand(new Event(eParts[0], duration[0], duration[1]));
+                return new AddCommand(new Event(eParts[0], false, duration[0], duration[1]));
 
             default:
                 return new InvalidCommand();

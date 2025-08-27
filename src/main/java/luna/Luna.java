@@ -1,15 +1,25 @@
 package luna;
 
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Luna {
     private TaskList taskList;
-    private Ui ui;
+    private final Ui ui;
+    private final Storage storage;
 
-    public Luna() {
+    public Luna(String filePath) {
         ui = new Ui();
-        taskList = new TaskList();
+        storage = new Storage(filePath);
+        try {
+            taskList = new TaskList(storage.load(), storage);
+        } catch (IOException e) {
+            System.out.println("Error loading tasks: " + e.getMessage());
+            taskList = new TaskList(new ArrayList<>(), storage);
+        }
+
     }
 
     public void run() {
@@ -33,7 +43,7 @@ public class Luna {
     }
 
     public static void main(String[] args) {
-        new Luna().run();
+        new Luna("data/luna.txt").run();
     }
 
 }
