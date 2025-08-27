@@ -23,6 +23,7 @@ public class TaskList {
         System.out.println(" Okay! I've added this task:");
         System.out.println("  " + t);
         System.out.println(" Looks like you have " + taskList.size() + " tasks in the list...");
+        saveTasks();
     }
 
     public void deleteTask(int index) {
@@ -30,6 +31,7 @@ public class TaskList {
         System.out.println(" Okay! I've removed this task:");
         System.out.println("  " + t);
         System.out.println(" Looks like you have " + taskList.size() + " tasks in the list...");
+        saveTasks();
     }
 
     public void markTask(int index) {
@@ -37,6 +39,7 @@ public class TaskList {
         t.mark();
         System.out.println(" Yay!! I've marked this task as done:");
         System.out.println("  " + t);
+        saveTasks();
     }
 
     public void unmarkTask(int index) {
@@ -44,6 +47,7 @@ public class TaskList {
         t.unmark();
         System.out.println(" Oh no :( I've marked this task as not done yet:");
         System.out.println("  " + t);
+        saveTasks();
     }
 
     private void saveTasks() {

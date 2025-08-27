@@ -21,8 +21,8 @@ public class Storage {
         }
 
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String line = br.readLine();
-        while (line != null) {
+        String line;
+        while ((line = br.readLine()) != null) {
             taskList.add(parseTask(line));
         }
         br.close();
