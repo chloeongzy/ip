@@ -1,3 +1,5 @@
+package luna.tasks;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -11,11 +13,11 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    protected void mark() {
+    public void mark() {
         this.isDone = true;
     }
 
-    protected void unmark() {
+    public void unmark() {
         this.isDone = false;
     }
 

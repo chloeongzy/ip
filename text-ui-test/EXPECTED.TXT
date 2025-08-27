@@ -1,4 +1,4 @@
- Hello! I'm Luna
+ Hello! I'm luna.Luna
  What can I do for you?
  okay! I've added this task:
   [T][ ] homework
@@ -7,12 +7,12 @@
   [D][ ] assignment (by: friday)
  Looks like you have 2 tasks in the list...
  okay! I've added this task:
-  [E][ ] birthday (from: 1pm to: 5pm)
+  [E][ ] birthday party (from: 1pm to: 5pm)
  Looks like you have 3 tasks in the list...
  Here are the tasks in your list!!
  1. [T][ ] homework
  2. [D][ ] assignment (by: friday)
- 3. [E][ ] birthday (from: 1pm to: 5pm)
+ 3. [E][ ] birthday party (from: 1pm to: 5pm)
  Yay!! I've marked this task as done:
   [T][X] homework
  Yay!! I've marked this task as done:
