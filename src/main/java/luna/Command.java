@@ -36,9 +36,11 @@ class ListCommand implements Command {
 
 class MarkCommand implements Command {
     private final int index;
+
     public MarkCommand(int index) {
         this.index = index;
     }
+
     public void execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index > tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
@@ -49,9 +51,11 @@ class MarkCommand implements Command {
 
 class UnmarkCommand implements Command {
     private final int index;
+
     public UnmarkCommand(int index) {
         this.index = index;
     }
+
     public void execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index > tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
@@ -62,9 +66,11 @@ class UnmarkCommand implements Command {
 
 class DeleteCommand implements Command {
     private final int index;
+
     public DeleteCommand(int index) {
         this.index = index;
     }
+
     public void execute(TaskList tasks, Ui ui) {
         tasks.deleteTask(index);
     }
@@ -72,9 +78,11 @@ class DeleteCommand implements Command {
 
 class AddCommand implements Command {
     private final Task task;
+
     public AddCommand(Task task) {
         this.task = task;
     }
+
     public void execute(TaskList tasks, Ui ui) {
         tasks.addTask(task);
     }

@@ -1,17 +1,22 @@
 package luna;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import luna.tasks.Deadline;
 import luna.tasks.Event;
 import luna.tasks.Task;
 import luna.tasks.Todo;
 
-import java.util.ArrayList;
-import java.io.*;
-
 /**
  * Handles reading from and writing to the task data file.
  */
- public class Storage {
+public class Storage {
     private final String filePath;
 
     /**
@@ -19,7 +24,6 @@ import java.io.*;
      *
      * @param filePath The path to the file used for storing tasks.
      */
-
     public Storage (String filePath) {
         this.filePath = filePath;
     }

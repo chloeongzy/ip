@@ -1,12 +1,13 @@
 package luna;
 
+import java.time.format.DateTimeParseException;
+
 import luna.tasks.Deadline;
 import luna.tasks.Event;
 import luna.tasks.Todo;
 
-import java.time.format.DateTimeParseException;
 
- public class Parser {
+public class Parser {
 
     /**
      * Parses the given input string and returns the corresponding Command object.

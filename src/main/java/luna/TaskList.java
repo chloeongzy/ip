@@ -1,9 +1,9 @@
 package luna;
 
-import luna.tasks.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import luna.tasks.Task;
 
 /**
  * Manages a list of tasks.

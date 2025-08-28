@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Luna {
-    private TaskList taskList;
     private final Ui ui;
     private final Storage storage;
+    private TaskList taskList;
 
     /**
      * Creates a new instance of the Luna application.
@@ -31,11 +31,17 @@ public class Luna {
     }
 
     /**
+     * Entry point of the Luna application.
+     */
+    public static void main(String[] args) {
+        new Luna("data/luna.txt").run();
+    }
+
+    /**
      * Runs the Luna application.
      * Displays a greeting, continuously processes user input,
      * and executes commands until an exit command is encountered.
      */
-
     public void run() {
         ui.greeting();
         Scanner sc = new Scanner(System.in);
@@ -56,13 +62,6 @@ public class Luna {
         sc.close();
     }
 
-    /**
-     * Entry point of the Luna application.
-     */
-
-    public static void main(String[] args) {
-        new Luna("data/luna.txt").run();
-    }
 
 }
 
