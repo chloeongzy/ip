@@ -43,6 +43,9 @@ public class Parser {
                 String[] duration = eParts[1].split(" /to ");
                 return new AddCommand(new Event(eParts[0], false, duration[0], duration[1]));
 
+            case "find":
+                return new FindCommand(detail);
+
             default:
                 return new InvalidCommand();
             }
