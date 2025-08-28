@@ -16,7 +16,7 @@ public class Luna {
         try {
             taskList = new TaskList(storage.load(), storage);
         } catch (IOException e) {
-            System.out.println("Error loading tasks: " + e.getMessage());
+            System.out.println(" Error loading tasks: " + e.getMessage());
             taskList = new TaskList(new ArrayList<>(), storage);
         }
 
