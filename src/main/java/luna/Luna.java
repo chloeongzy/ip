@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Luna {
-    private TaskList taskList;
     private final Ui ui;
     private final Storage storage;
+    private TaskList taskList;
 
     public Luna(String filePath) {
         ui = new Ui();
@@ -20,6 +20,10 @@ public class Luna {
             taskList = new TaskList(new ArrayList<>(), storage);
         }
 
+    }
+
+    public static void main(String[] args) {
+        new Luna("data/luna.txt").run();
     }
 
     public void run() {
@@ -40,10 +44,6 @@ public class Luna {
             }
         }
         sc.close();
-    }
-
-    public static void main(String[] args) {
-        new Luna("data/luna.txt").run();
     }
 
 }
