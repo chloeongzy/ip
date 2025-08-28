@@ -14,7 +14,7 @@ class ParserTest {
 
     @Test
     void testParseMarkCommand() throws LunaException {
-        TaskList taskList = new TaskList(new java.util.ArrayList<>(), null);
+        TaskList taskList = new TaskList(new java.util.ArrayList<>(), new Storage("data/luna.txt"));
         taskList.addTask(new Todo("Test task", false));
 
         Command cmd = Parser.parse("mark 1");
@@ -24,9 +24,11 @@ class ParserTest {
     }
 
     @Test
-    void testParseInvalidCommand() {
+    void testParseInvalidCommand() throws LunaException {
+        Command cmd = Parser.parse("invalid command");
         assertThrows(LunaException.InvalidCommandException.class, () -> {
-            Parser.parse("invalidcommand");
+            cmd.execute(new TaskList(new java.util.ArrayList<>(), new Storage("data/luna.txt")), new Ui());
         });
     }
+
 }
