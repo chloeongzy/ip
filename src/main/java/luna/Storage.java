@@ -1,6 +1,10 @@
 package luna;
 
-import luna.tasks.*;
+import luna.tasks.Deadline;
+import luna.tasks.Event;
+import luna.tasks.Task;
+import luna.tasks.Todo;
+
 import java.util.ArrayList;
 import java.io.*;
 
