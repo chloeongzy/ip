@@ -10,6 +10,14 @@ public class Luna {
     private final Ui ui;
     private final Storage storage;
 
+    /**
+     * Creates a new instance of the Luna application.
+     * Attempts to load tasks from the specified file path. If loading fails,
+     * initializes an empty task list.
+     *
+     * @param filePath File path of the task storage file.
+     */
+
     public Luna(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -21,6 +29,12 @@ public class Luna {
         }
 
     }
+
+    /**
+     * Runs the Luna application.
+     * Displays a greeting, continuously processes user input,
+     * and executes commands until an exit command is encountered.
+     */
 
     public void run() {
         ui.greeting();
@@ -41,6 +55,10 @@ public class Luna {
         }
         sc.close();
     }
+
+    /**
+     * Entry point of the Luna application.
+     */
 
     public static void main(String[] args) {
         new Luna("data/luna.txt").run();

@@ -5,10 +5,21 @@ import luna.tasks.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Manages a list of tasks.
+ * Methods for adding, deleting, marking, and unmarking tasks.
+ * Saves changes to persistent storage after each modification.
+ */
 public class TaskList {
-    private ArrayList<Task> taskList;
-    private Storage storage;
+    private final ArrayList<Task> taskList;
+    private final Storage storage;
 
+    /**
+     * Constructs a TaskList with the given list of tasks and storage.
+     *
+     * @param taskList The initial list of tasks.
+     * @param storage The Storage object used to save tasks to disk.
+     */
     public TaskList(ArrayList<Task> taskList, Storage storage) {
         this.taskList = taskList;
         this.storage = storage;

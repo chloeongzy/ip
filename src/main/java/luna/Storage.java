@@ -8,13 +8,29 @@ import luna.tasks.Todo;
 import java.util.ArrayList;
 import java.io.*;
 
-public class Storage {
+/**
+ * Handles reading from and writing to the task data file.
+ */
+ public class Storage {
     private final String filePath;
+
+    /**
+     * Creates a Storage object with the specified file path.
+     *
+     * @param filePath The path to the file used for storing tasks.
+     */
 
     public Storage (String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the storage file and returns them as a list.
+     *If the file or its parent directory does not exist, they are created automatically.
+     *
+     * @return A list of tasks loaded from the file. Returns an empty list if the file is new.
+     * @throws IOException If an I/O error occurs while reading from the file.
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> taskList = new ArrayList<>();
         File file = new File(filePath);
@@ -33,6 +49,15 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Parses a line from the storage file into a Task object.
+     * This method identifies the task type and reconstructs
+     * the appropriate subclass.
+     *
+     * @param line A line from the file representing a single task.
+     * @return A Task object parsed from the line.
+     * @throws IllegalArgumentException If the task type is unknown.
+     */
     private Task parseTask(String line) {
         String[] parts = line.split(" \\| ");
         String type = parts[0];
@@ -50,6 +75,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the list of tasks to the storage file.
+     *
+     * @param tasks The list of tasks to save.
+     * @throws IOException If an I/O error occurs while writing to the file.
+     */
     public void save(ArrayList<Task> tasks) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
         for (Task task : tasks) {

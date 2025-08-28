@@ -3,6 +3,13 @@ package luna;
 import luna.tasks.Task;
 
 public interface Command {
+    /**
+     * Executes the command using the given TaskList and Ui.
+     *
+     * @param taskList The list of tasks to operate on.
+     * @param ui The UI instance for displaying output.
+     * @throws LunaException If the command encounters an error during execution.
+     */
     void execute(TaskList taskList, Ui ui) throws LunaException;
 }
 

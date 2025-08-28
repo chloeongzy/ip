@@ -6,9 +6,14 @@ import luna.tasks.Todo;
 
 import java.time.format.DateTimeParseException;
 
+ public class Parser {
 
-public class Parser {
-
+    /**
+     * Parses the given input string and returns the corresponding Command object.
+     * @param input The user-input string.
+     * @return A command matching the user input.
+     * @throws LunaException if user-input was invalid .
+     */
     public static Command parse(String input) throws DateTimeParseException, LunaException {
         String[] parts = input.split(" ", 2);
         String command = parts[0];

@@ -3,6 +3,9 @@ package luna.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event task with a start and end time.
+ */
 public class Event extends Task {
 
     protected LocalDateTime from;
@@ -15,6 +18,11 @@ public class Event extends Task {
         this.to = LocalDateTime.parse(to, inputFormat);
     }
 
+    /**
+     * Returns a string representation of the task for display.
+     *
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
@@ -22,6 +30,11 @@ public class Event extends Task {
                 this.from.format(outputFormat) + " to: " + this.to.format(outputFormat) + ")";
     }
 
+    /**
+     * Returns a string representation of the task for saving to a file.
+     *
+     * {@inheritDoc}
+     */
     @Override
     public String toFileString() {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
