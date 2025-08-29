@@ -11,6 +11,14 @@ public class Event extends Task {
     protected LocalDateTime from;
     protected LocalDateTime to;
 
+    /**
+     * Constructs a new Event with the given description and duration
+     *
+     * @param description Description of task
+     * @param isDone Status of task, usually initialised to false
+     * @param from Start of event
+     * @param to End of event
+     */
     public Event(String description, boolean isDone, String from, String to) {
         super(description, isDone);
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");

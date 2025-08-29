@@ -5,6 +5,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The main class for luna application.
+ */
 public class Luna {
     private final Ui ui;
     private final Storage storage;

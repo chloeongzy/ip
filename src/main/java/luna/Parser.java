@@ -6,7 +6,11 @@ import luna.tasks.Deadline;
 import luna.tasks.Event;
 import luna.tasks.Todo;
 
-
+/**
+ * Parses user input commands into executable actions.
+ * Converts raw text input from the command line into structured
+ * command objects that can be processed by the system.
+ */
 public class Parser {
 
     /**

@@ -10,6 +10,13 @@ public class Deadline extends Task {
 
     protected LocalDateTime by;
 
+    /**
+     * Constructs a new Deadline with the given description
+     *
+     * @param description Description of task
+     * @param isDone Status of task, usually initialised to false
+     * @param by Deadline of task
+     */
     public Deadline(String description, boolean isDone, String by) {
         super(description, isDone);
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");

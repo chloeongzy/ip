@@ -5,6 +5,12 @@ package luna.tasks;
  */
 public class Todo extends Task {
 
+    /**
+     * Constructs a new Todo with the given description
+     *
+     * @param description Description of task
+     * @param isDone Status of task, usually initialised to false
+     */
     public Todo(String description, boolean isDone) {
 
         super(description, isDone);
