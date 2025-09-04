@@ -29,6 +29,10 @@ public class TaskList {
         return this.taskList;
     }
 
+    /**
+     * Adds a task to the current taskList.
+     * @param t The task to be added.
+     */
     public void addTask(Task t) {
         taskList.add(t);
         System.out.println(" Okay! I've added this task:");
@@ -37,6 +41,10 @@ public class TaskList {
         saveTasks();
     }
 
+    /**
+     * Deletes a task from t he current taskList.
+     * @param index The index of task to be deleted.
+     */
     public void deleteTask(int index) {
         Task t = taskList.remove(index);
         System.out.println(" Okay! I've removed this task:");
@@ -45,6 +53,10 @@ public class TaskList {
         saveTasks();
     }
 
+    /**
+     * Marks a task as completed.
+     * @param index The index of the task to be marked as completed.
+     */
     public void markTask(int index) {
         Task t = taskList.get(index);
         t.mark();
@@ -53,6 +65,10 @@ public class TaskList {
         saveTasks();
     }
 
+    /**
+     * Unmarks a task as uncompleted.
+     * @param index The index of the task to be unmarked as uncompleted.
+     */
     public void unmarkTask(int index) {
         Task t = taskList.get(index);
         t.unmark();

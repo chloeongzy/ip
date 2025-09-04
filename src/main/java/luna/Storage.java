@@ -24,13 +24,13 @@ public class Storage {
      *
      * @param filePath The path to the file used for storing tasks.
      */
-    public Storage (String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
      * Loads tasks from the storage file and returns them as a list.
-     *If the file or its parent directory does not exist, they are created automatically.
+     * If the file or its parent directory does not exist, they are created automatically.
      *
      * @return A list of tasks loaded from the file. Returns an empty list if the file is new.
      * @throws IOException If an I/O error occurs while reading from the file.

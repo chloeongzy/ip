@@ -24,6 +24,10 @@ public class Parser {
         String command = parts[0];
         String detail = parts.length > 1 ? parts[1] : "";
 
+        if (detail.equals("")) {
+            throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+        }
+
         try {
             switch (command) {
             case "bye":

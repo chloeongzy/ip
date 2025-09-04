@@ -1,7 +1,10 @@
 package luna.tasks;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoTest {
 
@@ -10,7 +13,7 @@ public class TodoTest {
         Todo t = new Todo("Read book", false);
         assertFalse(t.isDone()); // initially not done
         t.mark();
-        assertTrue(t.isDone());  // should now be done
+        assertTrue(t.isDone()); // should now be done
     }
 
     @Test

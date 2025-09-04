@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import luna.tasks.Task;
 
+/**
+ * Represents a command in the Luna application.
+ */
 public interface Command {
     /**
      * Executes the command using the given TaskList and Ui.
