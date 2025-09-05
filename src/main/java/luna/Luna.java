@@ -11,8 +11,8 @@ import luna.Ui.Ui;
  * The main class for luna application.
  */
 public class Luna {
-    private final Ui ui;
-    private final Storage storage;
+    private Ui ui;
+    private Storage storage;
     private TaskList taskList;
 
     /**
@@ -33,6 +33,15 @@ public class Luna {
             taskList = new TaskList(new ArrayList<>(), storage);
         }
 
+    }
+
+    public Luna() {};
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "luna heard: " + input;
     }
 
     /**

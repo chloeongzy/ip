@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import luna.Luna;
 
 public class Main extends Application {
 
@@ -21,6 +22,7 @@ public class Main extends Application {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userchatbox.png"));
     private Image lunaImage = new Image(this.getClass().getResourceAsStream("/images/lunachatbox.png"));
+    private Luna luna = new Luna();
 
     @Override
     public void start(Stage stage) {
@@ -92,7 +94,12 @@ public class Main extends Application {
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
-        dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), userImage));
+        String userText = userInput.getText();
+        String dukeText = luna.getResponse(userInput.getText());
+        dialogContainer.getChildren().addAll(
+                new DialogBox(userText, userImage),
+                new DialogBox(dukeText, lunaImage)
+        );
         userInput.clear();
     }
 }
