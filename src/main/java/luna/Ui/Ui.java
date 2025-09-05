@@ -1,4 +1,4 @@
-package luna;
+package luna.Ui;
 
 /**
  * Handles greeting and exit messages.

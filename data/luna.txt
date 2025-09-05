@@ -1,1 +1,2 @@
-T | 1 | Test task
+T | 0 | homework
+D | 0 | assignment | 2019-09-05 1600
