@@ -33,48 +33,46 @@ public class TaskList {
      * Adds a task to the current taskList.
      * @param t The task to be added.
      */
-    public void addTask(Task t) {
+    public String addTask(Task t) {
         taskList.add(t);
-        System.out.println(" Okay! I've added this task:");
-        System.out.println("  " + t);
-        System.out.println(" Looks like you have " + taskList.size() + " tasks in the list...");
         saveTasks();
+        return " Okay! I've added this task:\n" + " " + t
+                + " Looks like you have " + taskList.size() + " tasks in the list...";
     }
 
     /**
      * Deletes a task from t he current taskList.
      * @param index The index of task to be deleted.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task t = taskList.remove(index);
-        System.out.println(" Okay! I've removed this task:");
-        System.out.println("  " + t);
-        System.out.println(" Looks like you have " + taskList.size() + " tasks in the list...");
         saveTasks();
+        return " Okay! I've removed this task:\n" + " " + t
+                + " Looks like you have " + taskList.size() + " tasks in the list...";
     }
 
     /**
      * Marks a task as completed.
+     *
      * @param index The index of the task to be marked as completed.
+     * @return
      */
-    public void markTask(int index) {
+    public String markTask(int index) {
         Task t = taskList.get(index);
         t.mark();
-        System.out.println(" Yay!! I've marked this task as done:");
-        System.out.println("  " + t);
         saveTasks();
+        return  "Yay!! I've marked this task as done:\n  " + " " + t;
     }
 
     /**
      * Unmarks a task as uncompleted.
      * @param index The index of the task to be unmarked as uncompleted.
      */
-    public void unmarkTask(int index) {
+    public String unmarkTask(int index) {
         Task t = taskList.get(index);
         t.unmark();
-        System.out.println(" Oh no :( I've marked this task as not done yet:");
-        System.out.println("  " + t);
         saveTasks();
+        return " Oh no :( I've marked this task as not done yet:\n " + " " + t;
     }
 
     private void saveTasks() {

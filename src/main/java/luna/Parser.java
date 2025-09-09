@@ -34,38 +34,38 @@ public class Parser {
 
             case "mark":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 return new MarkCommand(Integer.parseInt(detail) - 1);
 
             case "unmark":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 return new UnmarkCommand(Integer.parseInt(detail) - 1);
 
             case "delete":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 return new DeleteCommand(Integer.parseInt(detail) - 1);
 
             case "todo":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 return new AddCommand(new Todo(detail, false));
 
             case "deadline":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 String[] dParts = detail.split(" /by ");
                 return new AddCommand(new Deadline(dParts[0], false, dParts[1]));
 
             case "event":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 String[] eParts = detail.split(" /from ");
                 String[] duration = eParts[1].split(" /to ");
@@ -73,7 +73,7 @@ public class Parser {
 
             case "find":
                 if (detail.equals("")) {
-                    throw new LunaException.EmptyInputException("description of task cannot be empty!!!!!!");
+                    throw new LunaException.EmptyInputException(" description of task cannot be empty!!!!!!");
                 }
                 return new FindCommand(detail);
 

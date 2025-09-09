@@ -13,30 +13,36 @@ public interface Command {
      * Executes the command using the given TaskList and Ui.
      *
      * @param taskList The list of tasks to operate on.
-     * @param ui The UI instance for displaying output.
+     * @param ui       The UI instance for displaying output.
+     * @return
      * @throws LunaException If the command encounters an error during execution.
      */
-    void execute(TaskList taskList, Ui ui) throws LunaException;
+    String execute(TaskList taskList, Ui ui) throws LunaException;
 }
 
 class InvalidCommand implements Command {
-    public void execute(TaskList tasks, Ui ui) throws LunaException {
+    public String execute(TaskList tasks, Ui ui) throws LunaException {
         throw new LunaException.InvalidCommandException(" Sorry I don't know what that means :(");
     }
 }
 
 class ExitCommand implements Command {
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         ui.exit();
+        return "Bye, see you again soon!";
     }
 }
 
 class ListCommand implements Command {
-    public void execute(TaskList tasks, Ui ui) {
-        System.out.println(" Here are the tasks in your list!!");
+    public String execute(TaskList tasks, Ui ui) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list!!\n");
+
         for (int i = 0; i < tasks.getTaskList().size(); i++) {
-            System.out.println(" " + (i + 1) + ". " + tasks.getTaskList().get(i));
+            sb.append(" ").append(i + 1).append(". ").append(tasks.getTaskList().get(i)).append("\n");
         }
+
+        return sb.toString();
     }
 }
 
@@ -47,11 +53,11 @@ class MarkCommand implements Command {
         this.index = index;
     }
 
-    public void execute(TaskList tasks, Ui ui) throws LunaException {
+    public String execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index > tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
         }
-        tasks.markTask(this.index);
+        return tasks.markTask(this.index);
     }
 }
 
@@ -62,11 +68,11 @@ class UnmarkCommand implements Command {
         this.index = index;
     }
 
-    public void execute(TaskList tasks, Ui ui) throws LunaException {
+    public String execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index > tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
         }
-        tasks.unmarkTask(this.index);
+        return tasks.unmarkTask(this.index);
     }
 }
 
@@ -77,8 +83,8 @@ class DeleteCommand implements Command {
         this.index = index;
     }
 
-    public void execute(TaskList tasks, Ui ui) {
-        tasks.deleteTask(index);
+    public String execute(TaskList tasks, Ui ui) {
+        return tasks.deleteTask(index);
     }
 }
 
@@ -89,8 +95,8 @@ class AddCommand implements Command {
         this.task = task;
     }
 
-    public void execute(TaskList tasks, Ui ui) {
-        tasks.addTask(task);
+    public String execute(TaskList tasks, Ui ui) {
+        return tasks.addTask(task);
     }
 }
 
@@ -110,10 +116,11 @@ class FindCommand implements Command {
      * Executes the find command by listing all tasks whose description contains the keyword.
      *
      * @param taskList The list of tasks to search through.
-     * @param ui The UI to display output messages.
+     * @param ui       The UI to display output messages.
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         ArrayList<Task> matches = new ArrayList<>();
         for (Task task : taskList.getTaskList()) {
             if (task.toString().toLowerCase().contains(keyword.toLowerCase())) {
@@ -122,13 +129,15 @@ class FindCommand implements Command {
         }
 
         if (matches.isEmpty()) {
-            System.out.println(" oops! No matching tasks found :(");
+            return (" oops! No matching tasks found :(");
         } else {
-            System.out.println(" Here are the matching tasks in your list: ");
+            StringBuilder sb = new StringBuilder();
+            sb.append(" Here are the matching tasks in your list:\n ");
             for (int i = 0; i < matches.size(); i++) {
-                System.out.println(" " + (i + 1) + "." + matches.get(i));
+                sb.append(" ").append(i + 1).append(".").append(matches.get(i));
             }
         }
+        return null;
     }
 }
 
