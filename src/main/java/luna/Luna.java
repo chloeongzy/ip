@@ -11,8 +11,8 @@ import luna.Ui.Ui;
  * The main class for luna application.
  */
 public class Luna {
-    private final Ui ui;
-    private final Storage storage;
+    private Ui ui;
+    private Storage storage;
     private TaskList taskList;
 
     /**
@@ -34,6 +34,8 @@ public class Luna {
         }
 
     }
+
+    public Luna() {};
 
     /**
      * Entry point of the Luna application.
