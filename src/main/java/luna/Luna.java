@@ -73,21 +73,19 @@ public class Luna {
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
-        boolean isExit = false;
+        try {
+            Command command = Parser.parse(input);
 
-        while (!isExit) {
-            try {
-                Command c = Parser.parse(input);
-                if (c instanceof ExitCommand) {
-                    isExit = true;
-                    return "Bye, see you again soon!";
-                }
-                return c.execute(taskList, ui);
-            } catch (DateTimeParseException | LunaException e) {
-                return e.getMessage();
+            if (command instanceof ExitCommand) {
+                return command.execute(taskList, ui);
             }
+
+            return command.execute(taskList, ui);
+
+        } catch (DateTimeParseException | LunaException e) {
+            return e.getMessage();
         }
-        return "";
+
     }
 
 
