@@ -136,8 +136,8 @@ class FindCommand implements Command {
             for (int i = 0; i < matches.size(); i++) {
                 sb.append(" ").append(i + 1).append(".").append(matches.get(i));
             }
+            return sb.toString();
         }
-        return null;
     }
 }
 
