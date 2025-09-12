@@ -22,6 +22,7 @@ public class Parser {
      * @throws LunaException if user-input was invalid .
      */
     public static Command parse(String input) throws DateTimeParseException, LunaException {
+        assert input != "";
         String[] parts = input.split(" ", 2);
         String command = parts[0];
         String detail = parts.length > 1 ? parts[1] : "";
@@ -63,6 +64,7 @@ public class Parser {
                     throw new LunaException.EmptyInputException(EMPTY_TASK_ERROR);
                 }
                 String[] dParts = detail.split(" /by ");
+                assert dParts.length > 1;
                 return new AddCommand(new Deadline(dParts[0], false, dParts[1]));
 
             case "event":
@@ -70,7 +72,9 @@ public class Parser {
                     throw new LunaException.EmptyInputException(EMPTY_TASK_ERROR);
                 }
                 String[] eParts = detail.split(" /from ");
+                assert eParts.length > 1;
                 String[] duration = eParts[1].split(" /to ");
+                assert duration.length > 1;
                 return new AddCommand(new Event(eParts[0], false, duration[0], duration[1]));
 
             case "find":
