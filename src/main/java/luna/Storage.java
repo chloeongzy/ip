@@ -67,17 +67,47 @@ public class Storage {
         String type = parts[0];
         boolean isDone = parts[1].equals("1");
 
+        Task task;
+
         switch (type) {
         case "T":
-            return new Todo(parts[2], isDone);
+            task = new Todo(parts[2], isDone);
+            if (parts.length > 3) {
+                addTagFromStorage(task, parts[3]);
+            }
+            break;
         case "D":
-            return new Deadline(parts[2], isDone, parts[3]);
+            task = new Deadline(parts[2], isDone, parts[3]);
+            if (parts.length > 4) {
+                addTagFromStorage(task, parts[4]);
+            }
+            break;
         case "E":
-            return new Event(parts[2], isDone, parts[3], parts[4]);
+            task = new Event(parts[2], isDone, parts[3], parts[4]);
+            if (parts.length > 5) {
+                addTagFromStorage(task, parts[5]);
+            }
+            break;
         default:
             throw new IllegalArgumentException("Unknown task type in file: " + type);
         }
+        return task;
     }
+
+    /**
+     * Helper function to add tags from storage
+     *
+     * @param task Task that the tags are to be tagged to
+     * @param tags Tags to be added to the specified task
+     */
+
+    public void addTagFromStorage(Task task, String tags) {
+        String[] tagSplit = tags.split(" ");
+        for (String tag : tagSplit) {
+            task.addTag(tag.substring(1));
+        }
+    }
+
 
     /**
      * Saves the list of tasks to the storage file.

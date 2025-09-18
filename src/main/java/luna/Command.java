@@ -46,6 +46,23 @@ class ListCommand implements Command {
     }
 }
 
+class TagCommand implements Command {
+    private final int index;
+    private final String[] tags;
+
+    public TagCommand(int index, String [] tags) {
+        this.index = index;
+        this.tags = tags;
+    }
+
+    public String execute(TaskList tasks, Ui ui) {
+        Task t = tasks.getTask(this.index);
+        for (String tag : tags) {
+            t.addTag(tag.trim());
+        }
+        return "I've added the tags to the task: \n" + t;
+    }
+}
 class MarkCommand implements Command {
     private final int index;
 

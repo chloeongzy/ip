@@ -1,5 +1,8 @@
 package luna.tasks;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Represents a general task with a description and completion status.
  * This is the base class for more specific task types.
@@ -7,6 +10,7 @@ package luna.tasks;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected Set<String> tags;
 
     /**
      * Constructs a Task with the given description and status.
@@ -17,7 +21,8 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
-    }
+        this.tags = new HashSet<>();
+    };
 
     public boolean isDone() {
         return this.isDone;
@@ -31,6 +36,30 @@ public class Task {
 
     public void unmark() {
         this.isDone = false;
+    }
+
+    public void addTag(String tag) {
+        tags.add(tag.toLowerCase());
+    }
+
+    public void removeTag(String tag) {
+        tags.remove(tag.toLowerCase());
+    }
+
+    public Set<String> getTags() {
+        return this.tags;
+    }
+
+    /**
+     * Returns a string representation of the tags tagged to each task
+     *
+     * @return The string to represent the tags
+     */
+
+    public String tagToString() {
+        return tags.isEmpty()
+                ? ""
+                : " " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
     }
 
     /**
@@ -49,7 +78,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 
 }
