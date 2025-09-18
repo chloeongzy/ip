@@ -83,6 +83,16 @@ public class Parser {
                 }
                 return new FindCommand(detail);
 
+            case "tag":
+                if (detail.equals("")) {
+                    throw new LunaException.EmptyInputException(EMPTY_TASK_ERROR);
+                }
+                String[] tParts = detail.split(" ");
+                assert tParts.length > 1;
+                int index = Integer.parseInt(tParts[0]) - 1;
+                String[] tags = tParts[1].split(", ");
+                return new TagCommand(index, tags);
+
             default:
                 return new InvalidCommand();
             }
