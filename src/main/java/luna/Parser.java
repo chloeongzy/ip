@@ -22,9 +22,9 @@ public class Parser {
      * @throws LunaException if user-input was invalid .
      */
     public static Command parse(String input) throws DateTimeParseException, LunaException {
-        assert input != "";
+        assert input != null && !input.trim().isEmpty();
         String[] parts = input.split(" ", 2);
-        String command = parts[0];
+        String command = parts[0].toLowerCase();
         String detail = parts.length > 1 ? parts[1] : "";
 
         try {

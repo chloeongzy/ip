@@ -21,12 +21,14 @@ public interface Command {
 }
 
 class InvalidCommand implements Command {
+    @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
         throw new LunaException.InvalidCommandException(" Sorry I don't know what that means :(");
     }
 }
 
 class ExitCommand implements Command {
+    @Override
     public String execute(TaskList tasks, Ui ui) {
         ui.exit();
         return "Bye, see you again soon!";
@@ -34,6 +36,7 @@ class ExitCommand implements Command {
 }
 
 class ListCommand implements Command {
+    @Override
     public String execute(TaskList tasks, Ui ui) {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list!!\n");
@@ -55,10 +58,11 @@ class TagCommand implements Command {
         this.tags = tags;
     }
 
+    @Override
     public String execute(TaskList tasks, Ui ui) {
         Task t = tasks.getTask(this.index);
         for (String tag : tags) {
-            t.addTag(tag.trim());
+            t.addTag(tag.trim().toLowerCase());
         }
         return "I've added the tags to the task: \n" + t;
     }
@@ -70,8 +74,9 @@ class MarkCommand implements Command {
         this.index = index;
     }
 
+    @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
-        if (index < 0 || index > tasks.getTaskList().size()) {
+        if (index < 0 || index >= tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
         }
         return tasks.markTask(this.index);
@@ -85,8 +90,9 @@ class UnmarkCommand implements Command {
         this.index = index;
     }
 
+    @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
-        if (index < 0 || index > tasks.getTaskList().size()) {
+        if (index < 0 || index >= tasks.getTaskList().size()) {
             throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
         }
         return tasks.unmarkTask(this.index);
@@ -100,6 +106,7 @@ class DeleteCommand implements Command {
         this.index = index;
     }
 
+    @Override
     public String execute(TaskList tasks, Ui ui) {
         return tasks.deleteTask(index);
     }
@@ -112,6 +119,7 @@ class AddCommand implements Command {
         this.task = task;
     }
 
+    @Override
     public String execute(TaskList tasks, Ui ui) {
         return tasks.addTask(task);
     }
