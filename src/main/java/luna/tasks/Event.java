@@ -49,6 +49,6 @@ public class Event extends Task {
         DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         return "E" + super.toFileString() + " | "
                 + from.format(outputFormat) + " | " + to.format(outputFormat)
-                + super.tagToString();
+                + " | " + super.tagToString();
     }
 }

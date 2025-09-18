@@ -33,7 +33,7 @@ public class Todo extends Task {
      */
     @Override
     public String toFileString() {
-        return "T" + super.toFileString() + super.tagToString();
+        return "T" + super.toFileString() + " | " + super.tagToString();
     }
 }
 
