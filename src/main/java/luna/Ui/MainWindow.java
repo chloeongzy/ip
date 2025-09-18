@@ -32,7 +32,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Duke instance */
+    /** Injects the Luna instance */
     public void setLuna(Luna d) {
         luna = d;
     }
@@ -43,12 +43,17 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
+        String input = userInput.getText().trim();
         assert !input.isEmpty();
         String response = luna.getResponse(input);
+        boolean isError = false;
+        if (response.startsWith(" Error")) {
+            isError = true;
+            response = "⚠️: \"" + response + "\"";
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getLunaDialog(response, lunaImage)
+                DialogBox.getLunaDialog(response, lunaImage, isError)
         );
         userInput.clear();
     }

@@ -52,9 +52,16 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img);
     }
 
-    public static DialogBox getLunaDialog(String text, Image img) {
+    public static DialogBox getLunaDialog(String text, Image img, boolean isError) {
         var db = new DialogBox(text, img);
         db.flip();
+
+        if (isError) {
+            db.getStyleClass().add("error-dialog");
+        } else {
+            db.getStyleClass().add("bot-dialog");
+        }
+
         return db;
     }
 }

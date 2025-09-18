@@ -23,7 +23,7 @@ public interface Command {
 class InvalidCommand implements Command {
     @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
-        throw new LunaException.InvalidCommandException(" Sorry I don't know what that means :(");
+        throw new LunaException.InvalidCommandException(" Error: Sorry I don't know what that means :(");
     }
 }
 
@@ -77,7 +77,7 @@ class MarkCommand implements Command {
     @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index >= tasks.getTaskList().size()) {
-            throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
+            throw new LunaException.InvalidTaskNumberException(" Error: Give me a valid number please!!");
         }
         return tasks.markTask(this.index);
     }
@@ -93,7 +93,7 @@ class UnmarkCommand implements Command {
     @Override
     public String execute(TaskList tasks, Ui ui) throws LunaException {
         if (index < 0 || index >= tasks.getTaskList().size()) {
-            throw new LunaException.InvalidTaskNumberException(" Give me a valid number please!!");
+            throw new LunaException.InvalidTaskNumberException(" Error: Give me a valid number please!!");
         }
         return tasks.unmarkTask(this.index);
     }

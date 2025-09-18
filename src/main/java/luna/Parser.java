@@ -13,7 +13,7 @@ import luna.tasks.Todo;
  */
 public class Parser {
 
-    private static final String EMPTY_TASK_ERROR = " description of task cannot be empty!";
+    private static final String EMPTY_TASK_ERROR = " Error: description of task cannot be empty!";
 
     /**
      * Parses the given input string and returns the corresponding Command object.
