@@ -51,15 +51,24 @@ public class Task {
     }
 
     /**
+     * Returns a string representation of the tags tagged to each task
+     *
+     * @return The string to represent the tags
+     */
+
+    public String tagToString() {
+        return tags.isEmpty()
+                ? ""
+                : " " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
+    }
+
+    /**
      * Returns a string representation of the task for saving to a file.
      *
      * @return The string to be written to the save file.
      */
     public String toFileString() {
-        String tagString = tags.isEmpty()
-                ? ""
-                : " " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
-        return " | " + (isDone ? "1" : "0") + " | " + this.description + tagString;
+        return " | " + (isDone ? "1" : "0") + " | " + this.description;
     }
 
     /**
@@ -69,10 +78,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        String tagString = tags.isEmpty()
-                ? ""
-                : " " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
-        return "[" + getStatusIcon() + "] " + this.description + tagString;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 
 }
