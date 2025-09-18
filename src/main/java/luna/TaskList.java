@@ -29,6 +29,9 @@ public class TaskList {
         return this.taskList;
     }
 
+    public Task getTask(int index) {
+        return this.taskList.get(index);
+    }
     /**
      * Adds a task to the current taskList.
      * @param t The task to be added.
