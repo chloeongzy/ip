@@ -64,7 +64,7 @@ class TagCommand implements Command {
         for (String tag : tags) {
             t.addTag(tag.trim().toLowerCase());
         }
-        return "I've added the tags to the task: \n" + t;
+        return "I've added the tags to the task: \n" + " " + t;
     }
 }
 class MarkCommand implements Command {

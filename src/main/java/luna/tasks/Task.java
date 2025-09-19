@@ -42,14 +42,6 @@ public class Task {
         tags.add(tag.toLowerCase());
     }
 
-    public void removeTag(String tag) {
-        tags.remove(tag.toLowerCase());
-    }
-
-    public Set<String> getTags() {
-        return this.tags;
-    }
-
     /**
      * Returns a string representation of the tags tagged to each task
      *

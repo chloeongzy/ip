@@ -39,8 +39,8 @@ public class TaskList {
     public String addTask(Task t) {
         taskList.add(t);
         saveTasks();
-        return " Okay! I've added this task:\n" + " " + t
-                + " Looks like you have " + taskList.size() + " tasks in the list...";
+        return "Okay! I've added this task:\n" + "  " + t + "\n"
+                + "Looks like you have " + taskList.size() + " tasks in the list...";
     }
 
     /**
@@ -50,8 +50,8 @@ public class TaskList {
     public String deleteTask(int index) {
         Task t = taskList.remove(index);
         saveTasks();
-        return " Okay! I've removed this task:\n" + " " + t
-                + " Looks like you have " + taskList.size() + " tasks in the list...";
+        return "Okay! I've removed this task:\n" + "  " + t + "\n"
+                + "Looks like you have " + taskList.size() + " tasks in the list...";
     }
 
     /**
@@ -75,7 +75,7 @@ public class TaskList {
         Task t = taskList.get(index);
         t.unmark();
         saveTasks();
-        return " Oh no :( I've marked this task as not done yet:\n " + " " + t;
+        return "Oh no :( I've marked this task as not done yet:\n " + " " + t;
     }
 
     private void saveTasks() {
