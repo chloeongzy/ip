@@ -1,4 +1,4 @@
-package luna.Ui;
+package luna.ui;
 
 import javafx.application.Application;
 

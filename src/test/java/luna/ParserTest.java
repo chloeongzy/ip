@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import luna.Ui.Ui;
+import luna.ui.Ui;
 import luna.tasks.Todo;
 
 
