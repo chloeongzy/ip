@@ -1,5 +1,7 @@
 package luna;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import luna.tasks.Deadline;
@@ -14,6 +16,9 @@ import luna.tasks.Todo;
 public class Parser {
 
     private static final String EMPTY_TASK_ERROR = " Error: description of task cannot be empty!";
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
 
     /**
      * Parses the given input string and returns the corresponding Command object.
@@ -64,18 +69,55 @@ public class Parser {
                     throw new LunaException.EmptyInputException(EMPTY_TASK_ERROR);
                 }
                 String[] dParts = detail.split(" /by ");
-                assert dParts.length > 1;
-                return new AddCommand(new Deadline(dParts[0], false, dParts[1]));
+                if (dParts.length < 2 || dParts[0].isBlank() || dParts[1].isBlank()) {
+                    throw new LunaException.InvalidCommandException(
+                            "Error: Deadline format should be 'deadline <description> /by <YYYY-MM-DD HH:mm>'"
+                    );
+                }
+
+                // Validate datetime
+                try {
+                    LocalDateTime by = LocalDateTime.parse(dParts[1].trim(), FORMATTER);
+                    return new AddCommand(new Deadline(dParts[0].trim(), false, dParts[1].trim()));
+                } catch (DateTimeParseException e) {
+                    throw new LunaException.InvalidCommandException(
+                            "Error: Invalid date/time format for deadline! Use YYYY-MM-DD HH:mm"
+                    );
+                }
+
 
             case "event":
-                if (detail.equals("")) {
+                if (detail.isBlank()) {
                     throw new LunaException.EmptyInputException(EMPTY_TASK_ERROR);
                 }
                 String[] eParts = detail.split(" /from ");
+                if (eParts.length < 2 || eParts[0].isBlank()) {
+                    throw new LunaException.InvalidCommandException(
+                            "Error: Event format should be 'event <description> /from <start> /to <end>'"
+                    );
+                }
                 assert eParts.length > 1;
                 String[] duration = eParts[1].split(" /to ");
+                if (duration.length < 2 || duration[0].isBlank() || duration[1].isBlank()) {
+                    throw new LunaException.InvalidCommandException(
+                            "Error: Event format should include both start and end times"
+                    );
+                }
                 assert duration.length > 1;
-                return new AddCommand(new Event(eParts[0], false, duration[0], duration[1]));
+                try {
+                    LocalDateTime start = LocalDateTime.parse(duration[0].trim(), FORMATTER);
+                    LocalDateTime end = LocalDateTime.parse(duration[1].trim(), FORMATTER);
+                    if (!start.isBefore(end)) {
+                        throw new LunaException.InvalidCommandException(
+                                "Error: Start time must be before end time!"
+                        );
+                    }
+                    return new AddCommand(new Event(eParts[0].trim(), false, duration[0].trim(), duration[1].trim()));
+                } catch (DateTimeParseException e) {
+                    throw new LunaException.InvalidCommandException(
+                            "Error: Invalid date/time format for event! Use YYYY-MM-DD HH:mm"
+                    );
+                }
 
             case "find":
                 if (detail.equals("")) {
