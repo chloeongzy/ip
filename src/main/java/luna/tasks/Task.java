@@ -59,7 +59,7 @@ public class Task {
     public String tagToString() {
         return tags.isEmpty()
                 ? ""
-                : " " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
+                : " | " + tags.stream().map(tag -> "#" + tag).reduce((a, b) -> a + " " + b).get();
     }
 
     /**
