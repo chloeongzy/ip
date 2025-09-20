@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClass.set("luna.Ui.Launcher")
+    mainClass.set("luna.ui.Launcher")
 }
 
 shadowJar {
